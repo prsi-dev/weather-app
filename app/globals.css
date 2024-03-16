@@ -38,6 +38,9 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+
+  --primary: #fafafa;
+  --secondary: #282828;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -70,6 +73,8 @@
     --callout-border-rgb: 108, 108, 108;
     --card-rgb: 100, 100, 100;
     --card-border-rgb: 200, 200, 200;
+    --primary: #282828;
+    --secondary: #fafafa;
   }
 }
 
@@ -86,13 +91,8 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: rgb(var(--secondary));
+  background: var(primary);
 }
 
 a {
