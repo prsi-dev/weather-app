@@ -128,14 +128,18 @@
 }
 
 .windDescription {
-  margin-top: 1rem;
   display: flex;
   flex-direction: column;
+  margin-top: 1rem;
   gap: 0.1rem;
 }
 .tempDescription {
-  margin-top: 0.5rem;
   display: flex;
   flex-direction: column;
+  margin-top: 0.5rem;
   gap: 0.1rem;
+}
+
+.tempDescriptionTitle {
+  font-size: x-large;
 }

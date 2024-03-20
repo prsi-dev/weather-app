@@ -31,13 +31,14 @@ export type WeatherProps = {
     dt_txt: string;
   };
 };
+export interface WeatherResponse {
+  dt: number;
+  list: WeatherData[];
+}
 
-export interface Forecast {
-  wind: {
-    deg: number;
-    gust: number;
-    speed: number;
-  };
+export interface WeatherData {
+  wind: any;
+  dt: number;
   dt_txt: string;
   main: {
     temp: number;
@@ -45,24 +46,13 @@ export interface Forecast {
     pressure: number;
     feels_like: number;
   };
-  weather: [
-    {
-      icon: string;
-      main: string;
-      description: string;
-    }
-  ];
+  weather: {
+    icon: string;
+    description: string;
+  }[];
 }
 
-export interface WeatherResponse {
-  dt: number;
-  list: {
-    dt_txt: string;
-    main: {
-      temp: number;
-    };
-    weather: {
-      description: string;
-    }[];
-  }[];
+export interface DailyForecast {
+  date: string;
+  data: WeatherData[];
 }

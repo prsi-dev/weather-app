@@ -6,13 +6,13 @@ import WindDirection from "../WindDirection/WindDriection";
 
 import WeatherIcon from "../WeatherIcon/WeatherIcon";
 
-import Forecast from "../Forecast/Forecast";
+import { WeatherData } from "@/app/types/ForecastTypes";
 
 import styles from "./styles.module.css";
 
 interface DialogProps {
   trigger: JSX.Element;
-  forecast: Forecast;
+  forecast: WeatherData;
 }
 
 const DetailDialog = ({ trigger, forecast }: DialogProps) => {
@@ -28,27 +28,29 @@ const DetailDialog = ({ trigger, forecast }: DialogProps) => {
               <h3>{format(parseISO(forecast.dt_txt), "p")}</h3>
             </span>
           </Dialog.Title>
-          <Dialog.Description className={styles.DialogDescription}>
-            <div className={styles.mainDescription}>
+          <div className={styles.DialogDescription}>
+            <span className={styles.mainDescription}>
               <WeatherIcon value={forecast.weather[0].icon} />
               <p className={styles.mainDescriptionTitle}>
                 {forecast.weather[0].description}
               </p>
-            </div>
-            <div className={styles.tempDescription}>
-              <h4>Temperature Conditions</h4>
+            </span>
+            <span className={styles.tempDescription}>
+              <p className={styles.tempDescriptionTitle}>
+                Temperature Conditions
+              </p>
               <p>Temperature: {Math.floor(forecast.main.temp)}°C</p>
               <p>Feels like: {Math.floor(forecast.main.feels_like)}°C</p>
               <p>Humidity: {forecast.main.humidity}%</p>
               <p>Atmospheric Pressure: {forecast.main.pressure} hPa</p>
-            </div>
-            <div className={styles.windDescription}>
-              <h4>Wind Conditions</h4>
+            </span>
+            <span className={styles.windDescription}>
+              <p>Wind Conditions</p>
               <p>Speed: {forecast.wind.speed} m/s</p>
               <p>Gust: {forecast.wind.gust} m/s</p>
               <WindDirection degrees={forecast.wind.deg} />
-            </div>
-          </Dialog.Description>
+            </span>
+          </div>
           <Dialog.Close asChild>
             <button className={styles.IconButton} aria-label="Close">
               <IoClose />

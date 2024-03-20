@@ -1,6 +1,5 @@
 import React from "react";
 
-// Function to determine wind direction
 const getWindDirection = (degrees: number) => {
   const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
   const index =
@@ -13,7 +12,7 @@ interface WindDirectionProps {
 }
 
 const WindDirection = ({ degrees }: WindDirectionProps) => (
-  <div>{`Wind Direction: ${degrees}° ${getWindDirection(degrees)}`}</div>
+  <span>{`Wind Direction: ${degrees}° ${getWindDirection(degrees)}`}</span>
 );
 
 export default WindDirection;

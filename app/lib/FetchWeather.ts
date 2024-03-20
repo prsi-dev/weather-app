@@ -1,27 +1,30 @@
 import { format, parseISO } from "date-fns";
 
-import { Forecast, WeatherResponse } from "../types/ForecastTypes";
+import { WeatherData, WeatherResponse } from "../types/ForecastTypes";
 
-export const groupForecastsByDay = (
-  forecasts: []
-): Record<string, Forecast[]> => {
-  return (
-    forecasts &&
-    forecasts.reduce(
-      (acc: { [x: string]: any[] }, forecast: { dt_txt: string }) => {
-        const dateKey = format(parseISO(forecast.dt_txt), "yyyy-MM-dd");
+export const groupForecastsByDay = (forecasts: WeatherData[]) => {
+  const groupedByDay = forecasts.reduce(
+    (acc: { [key: string]: WeatherData[] }, forecast) => {
+      const dateKey = format(parseISO(forecast.dt_txt), "yyyy-MM-dd");
 
-        if (!acc[dateKey]) {
-          acc[dateKey] = [];
-        }
+      if (!acc[dateKey]) {
+        acc[dateKey] = [];
+      }
 
-        acc[dateKey].push(forecast);
+      acc[dateKey].push(forecast);
+      console.log(acc);
 
-        return acc;
-      },
-      {} as Record<string, any[]>
-    )
+      return acc;
+    },
+    {}
   );
+
+  const groupedArray = Object.entries(groupedByDay).map(([date, data]) => ({
+    date,
+    data,
+  }));
+
+  return groupedArray;
 };
 
 export async function fetchWeather(url: string) {

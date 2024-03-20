@@ -10,8 +10,6 @@ export default async function Home() {
   const units = "metric";
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
 
-  // Define an interface for the response to ensure type safety
-
   const forecasts = await fetchWeather(url);
 
   return (
